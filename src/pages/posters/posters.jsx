@@ -11,6 +11,7 @@ import {message} from "antd";
 const postersClass = classNames.bind(postersStyle);
 const container = postersClass('position', 'container');
 
+
 class Posters extends Component {  //class特性
     constructor(props) {
         super(props);
@@ -63,7 +64,7 @@ class Posters extends Component {  //class特性
                 <Header {...props}/>
                 <div className="container" flex="">
                     {/*<List flex-box="0" {...props}/>*/}
-                    <div flex-box="1" className="container">
+                    <div flex-box="1" className={postersStyle.overflow}>
                         <Model {...props}/>
                     </div>
                     <Control {...props}/>
