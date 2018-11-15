@@ -6,6 +6,7 @@ function mapStateToProps(state, props) {
         postDataIndex: state.data.postDataIndex,
         postHeight:state.data.postHeight,
         postWidth:state.data.postWidth,
+        defaultHeight:state.data.defaultHeight,
         postTitle:state.data.postTitle,
         postImage:state.data.postImage
     };

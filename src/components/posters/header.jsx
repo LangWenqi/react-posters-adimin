@@ -33,7 +33,7 @@ class Header extends Component {  //class特性
     clearData(){
         const props = this.props;
         props.handlePostDataAction([], -1);
-        props.handlePostHeightAction(667);
+        props.handlePostHeightAction(props.defaultHeight);
         props.handlePostTitleAction('');
         props.handlePostImageAction('');
     }
@@ -62,7 +62,7 @@ class Header extends Component {  //class特性
             postWidth:props.postWidth,
             postHeight:props.postHeight,
         };
-        const postDataList = [...props.postDataList].sort((a,b)=>(a.zIndex-b.zIndex));
+        const postDataList = [...props.postDataList].sort((a,b)=>(a.componentStyle.zIndex-b.componentStyle.zIndex));
         styleDetail.postDataList = postDataList;
         let params = {
             posterName:props.postTitle,
@@ -116,9 +116,10 @@ class Header extends Component {  //class特性
         props.handlePostDataAction(list, 0);
     }
     makeBgPostData(data){
+        const props = this.props;
         const componentStyle = {
-            width:numToPxString(375),
-            height:numToPxString(667),
+            width:numToPxString(props.postWidth),
+            height:numToPxString(props.defaultHeight),
             position: 'relative',
             zIndex:`1`,
             overflow:'hidden',
@@ -145,10 +146,11 @@ class Header extends Component {  //class特性
         return 300 * height / width
     }
     makeCardPostData(data){
+        const props = this.props;
         const componentStyle = {
             background: 'rgba(0,0,0,0.5)',
             color:'#fff',
-            width:numToPxString(375),
+            width:numToPxString(props.postWidth),
             height:numToPxString(115),
             top:numToPxString(0),
             left:numToPxString(0),
@@ -164,17 +166,17 @@ class Header extends Component {  //class特性
         }
     }
     makeFontPostData(data = {}){
-        const props = this.props;
         const componentStyle = {
             display:'inline-block',
             position: 'absolute',
-            maxWidth:numToPxString(props.postWidth),
             left:numToPxString(0),
             top:numToPxString(0),
             zIndex:`1`,
             fontSize:'16px',
             color:'rgba(0,0,0,1)',
-            fontWeight:'normal'
+            fontWeight:'normal',
+            textAlign:'justify',
+            maxWidth:'375px'
         };
         return {
             componentStyle,
@@ -201,7 +203,8 @@ class Header extends Component {  //class特性
             key: new Date().getTime(),
             ifScale:1,
             position:true,
-            size:true
+            size:true,
+            imageType:1
         }
     }
     makeCodePostData(data = {}) {

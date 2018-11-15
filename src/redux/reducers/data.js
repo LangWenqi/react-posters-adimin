@@ -8,7 +8,8 @@ const initState = {
     postStepList: [],
     postStepIndex: 0,
     postWidth:375,
-    postHeight:667,
+    postHeight:562,
+    defaultHeight:562,
     postTitle:'',
     postImage:''
 };

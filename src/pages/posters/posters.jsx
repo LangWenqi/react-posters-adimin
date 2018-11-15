@@ -53,7 +53,7 @@ class Posters extends Component {  //class特性
     clearData(){
         const props = this.props;
         props.handlePostDataAction([], -1);
-        props.handlePostHeightAction(667);
+        props.handlePostHeightAction(props.defaultHeight);
         props.handlePostTitleAction('');
         props.handlePostImageAction('');
     }

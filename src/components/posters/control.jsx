@@ -119,7 +119,7 @@ class Control extends Component {
                     ControlComponent?<div>
                         <div className={controlStyle.des}>定位层级</div>
                         <div>
-                            <InputNumber min={1}  defaultValue={1} value={zIndexValue} onChange={this.handleChangeZIndex.bind(this)} />
+                            <InputNumber min={1} max={999} maxLength={3} defaultValue={1} value={zIndexValue} onChange={this.handleChangeZIndex.bind(this)} />
                         </div>
                         {postItem.position?(<div>
                             <div className={controlStyle.des}>坐标</div>

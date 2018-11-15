@@ -125,7 +125,7 @@ module.exports = {
           },
         ],
         include: paths.appSrc,
-        exclude:`${paths.appSrc}/common`
+        exclude:pathResolve('src/common')
       },
       {
         // "oneOf" will traverse all following loaders until one will

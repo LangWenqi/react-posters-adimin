@@ -2,7 +2,7 @@ import React, {Component} from 'react'   //模块引入
 import {message} from 'antd';
 import classNames from 'classnames/bind';
 import {getOssToken} from '@/api/apis/oss'
-import browserMD5File from 'browser-md5-file';
+// import browserMD5File from 'browser-md5-file';
 import {handleKey} from '@/utils/file'
 import {TokenKeys} from '@/common/js/variable'
 import upFileStyle from './upfile.less'
@@ -14,7 +14,7 @@ let fileIndex = {};
 let hashIndex = {};
 let percent = 0;
 const host = TokenKeys.OSS_DOMAIN;
-const BMF = new browserMD5File();
+// const BMF = new browserMD5File();
 
 class UpFile extends Component {  //class特性
     constructor(props) {
@@ -225,24 +225,33 @@ class UpFile extends Component {  //class特性
         if (!this.checkSize(files, increment, resolve, reject)) {
             return;
         }
-        BMF.md5(
-            files[hashIndex[increment]],
-            (err, md5) => {
-                files[hashIndex[increment]].id =
-                    this.props.filepath +
-                    md5 +
-                    new Date().getTime() +
-                    Math.floor(9000 * Math.random() + 1000) +
-                    "." +
-                    handleKey(files[hashIndex[increment]]).endType;
-                this.toLocal(files[hashIndex[increment]]);
-                hashIndex[increment]++;
-                this.getFileHash(files, increment, resolve, reject);
-            },
-            progress => {
-                console.log('progress number:', progress);
-            },
-        );
+        files[hashIndex[increment]].id =
+            this.props.filepath +
+            new Date().getTime() +
+            Math.floor(9000 * Math.random() + 1000) +
+            "." +
+            handleKey(files[hashIndex[increment]]).endType;
+        this.toLocal(files[hashIndex[increment]]);
+        hashIndex[increment]++;
+        this.getFileHash(files, increment, resolve, reject);
+        // BMF.md5(
+        //     files[hashIndex[increment]],
+        //     (err, md5) => {
+        //         files[hashIndex[increment]].id =
+        //             this.props.filepath +
+        //             md5 +
+        //             new Date().getTime() +
+        //             Math.floor(9000 * Math.random() + 1000) +
+        //             "." +
+        //             handleKey(files[hashIndex[increment]]).endType;
+        //         this.toLocal(files[hashIndex[increment]]);
+        //         hashIndex[increment]++;
+        //         this.getFileHash(files, increment, resolve, reject);
+        //     },
+        //     progress => {
+        //         console.log('progress number:', progress);
+        //     },
+        // );
     }
 
     /**

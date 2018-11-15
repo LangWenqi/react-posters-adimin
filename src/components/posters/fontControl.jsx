@@ -28,7 +28,7 @@ setFontSize(12,48);
 // const fontClass = classNames.bind(fontControlStyle);
 class FontControl extends Component {  //class特性
     static defaultProps = {
-        maxLength: 10000
+        maxLength: 200
     }
     componentDidMount() {
 

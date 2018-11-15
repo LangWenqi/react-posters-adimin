@@ -8,14 +8,7 @@ import {des,color} from '@/pageStyle/posters/control.less'
 // import classNames from 'classnames/bind';
 // const bgClass = classNames.bind(bgControlStyle);
 
-const defaultHeight = 667;
 class BgControl extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            height:667
-        }
-    }
     componentWillMount() {
         this.initHeight()
     }
@@ -41,8 +34,6 @@ class BgControl extends Component {
         this.doChange('background',bgColor)
     }
     handleHeightChange(value){
-        this.setState({height:value});
-        if(value < defaultHeight)return;
         const props = this.props;
         this.doChange('height',numToPxString(value));
         props.handlePostHeightAction(value);
@@ -54,7 +45,7 @@ class BgControl extends Component {
             <div>
                 <div className={des}>背景高度</div>
                 <div>
-                    <InputNumber min={defaultHeight}  defaultValue={defaultHeight} value={this.state.height} onChange={this.handleHeightChange.bind(this)} />
+                    <InputNumber  defaultValue={props.defaultHeight} value={pxStringToNum(item.componentStyle.height)} onChange={this.handleHeightChange.bind(this)} />
                 </div>
                 <div className={des}>背景颜色</div>
                 <div className={color} style={{background:item.componentStyle.background}}/>

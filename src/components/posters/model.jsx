@@ -16,8 +16,11 @@ class Model extends Component {
 
     }
     handleDragComponentStyle(data){
-        let obj = {left: numToPxString(data.left), top: numToPxString(data.top)};
         const props = this.props;
+        let obj = {left: numToPxString(data.left), top: numToPxString(data.top)};
+        if(props.postDataList[props.postDataIndex].componentName==='Font'){
+            obj.maxWidth = numToPxString(props.postWidth - data.left);
+        }
         const list = set(props.postDataList,[props.postDataIndex,'componentStyle'],{...get(props.postDataList,[props.postDataIndex,'componentStyle']),...obj});
         props.handlePostDataAction(list, props.postDataIndex);
     }
@@ -38,7 +41,7 @@ class Model extends Component {
         e.stopPropagation();
         const props = this.props;
         if(props.postDataList[index].componentName==='Bg'){
-            props.handlePostHeightAction(667);
+            props.handlePostHeightAction(props.defaultHeight);
         }
         const list = splice(props.postDataList, index);
         props.handlePostDataAction(list, -1);
@@ -48,7 +51,7 @@ class Model extends Component {
         return (
             <div className={modelStyle.container}>
                 <div className={modelStyle.title}>海报展示</div>
-                <div className={modelStyle.wrapper}>
+                <div className={modelStyle.wrapper} style={{height:props.postHeight}}>
                     {props.postDataList.map((el, index) => {
                         const ModelComponent = modelComponents[`${el.componentName}Model`];
                         return <Dragger noDrag={el.noDrag||(index !== props.postDataIndex)} ref={(e)=>refArr[index]=e}
